@@ -11,7 +11,7 @@ const CourseCard = ({ course }) => {
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
                 <Card.Text>
-                    {details.slice(0, 100)}
+                    {details.slice(0, 200)}
                 </Card.Text>
                 <Button variant="primary">Go somewhere</Button>
             </Card.Body>
