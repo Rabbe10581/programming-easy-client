@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link, useLoaderData } from 'react-router-dom';
-import CourseCard from '../../components/CourseCard';
+import CourseCard from './CourseCard';
 
 const Courses = () => {
     const courses = useLoaderData();
