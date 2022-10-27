@@ -16,7 +16,7 @@ const Courses = () => {
                                 key={course.id}
                             >
                                 <Link
-                                    to={`/courses/${course.id}`}
+                                    to={`/details/${course.id}`}
                                     className='text-decoration-none'
                                 >{course.name}</Link>
                             </p>)
