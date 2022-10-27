@@ -13,8 +13,10 @@ const Courses = () => {
                     <Col lg="3">
                         {
                             courses.map(course => <p
-                                key={course.id}>
+                                key={course.id}
+                            >
                                 <Link
+                                    to={`/courses/${course.id}`}
                                     className='text-decoration-none'
                                 >{course.name}</Link>
                             </p>)

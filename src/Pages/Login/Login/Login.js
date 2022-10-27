@@ -1,13 +1,28 @@
 import React from 'react';
 import { useContext } from 'react';
+import { ButtonGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { FaGoogle, FaGithub } from "react-icons/fa";
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleProviderLogin } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider()
+
+    const handleGoogleSignIn = () => {
+        googleProviderLogin(googleProvider)
+            .then(res => {
+                const user = res.user;
+                // console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
+
+
     const navigate = useNavigate();
 
     const handleSubmit = event => {
@@ -26,6 +41,7 @@ const Login = () => {
 
     }
 
+
     return (
         <Form onSubmit={handleSubmit} className='w-50 mx-auto'>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -43,10 +59,14 @@ const Login = () => {
             <Form.Text className="text-danger">
 
             </Form.Text>
-            <br />
             <Button variant="primary" type="submit">
                 Login
             </Button>
+            <br />
+            <ButtonGroup vertical>
+                <Button onClick={handleGoogleSignIn} className='mb-2' variant='outline-primary'><FaGoogle />Login with Google</Button>
+                <Button variant='outline-dark'><FaGithub />Login with Github</Button>
+            </ButtonGroup>
         </Form>
     );
 };
