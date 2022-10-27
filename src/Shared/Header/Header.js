@@ -27,8 +27,8 @@ const Header = () => {
                     <Nav>
                         <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
                         <Nav.Link href="#deets">
-                            {user.photoURL ?
-                                <Image style={{ height: '30px' }} roundedCircle src={user.photoURL}></Image>
+                            {user?.photoURL ?
+                                <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image>
                                 :
                                 <FaUser></FaUser>
                             }
