@@ -10,7 +10,13 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
 
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     return (
         <Navbar collapseOnSelect className='mb-4' expand="lg" bg="primary" variant="dark">
@@ -28,16 +34,16 @@ const Header = () => {
                     <Nav>
                         <Nav.Link href="#deets">
                             {
-                                user.uid ?
+                                user?.uid ?
                                     <>
-                                        <Button className='me-2' variant='primary'>Log out</Button>
+                                        <Button onClick={handleLogOut} className='me-2' variant='primary'>Log out</Button>
                                         <span>{user?.displayName}</span>
 
                                     </>
                                     :
                                     <>
-                                        <Link to='/login'>Login</Link>
-                                        <Link to='/register'>Register</Link>
+                                        <Link className='text-white text-decoration-none me-2' to='/login'>Login</Link>
+                                        <Link className='text-white text-decoration-none' to='/register'>Register</Link>
                                     </>
                             }
 
