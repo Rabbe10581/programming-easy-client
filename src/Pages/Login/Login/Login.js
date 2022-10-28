@@ -11,6 +11,7 @@ import Card from 'react-bootstrap/Card';
 import { useState } from 'react';
 
 const Login = () => {
+    // const [user, setUser] = useState({})
     const [error, setError] = useState('');
     const { signIn, googleProviderLogin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider()
@@ -43,6 +44,7 @@ const Login = () => {
         googleProviderLogin(googleProvider)
             .then(res => {
                 const user = res.user;
+                // setUser(user);
                 console.log(user);
             })
             .catch(error => console.error(error))

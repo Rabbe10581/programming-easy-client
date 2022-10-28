@@ -9,7 +9,6 @@ import { Button, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-
     const { user, logOut } = useContext(AuthContext)
 
     const handleLogOut = () => {
@@ -34,7 +33,7 @@ const Header = () => {
                     <Nav>
                         <Nav.Link href="#deets">
                             {
-                                user?.uid ?
+                                user?.email ?
                                     <>
                                         <Button onClick={handleLogOut} className='me-2' variant='primary'>Log out</Button>
                                         <span>{user?.displayName}</span>
