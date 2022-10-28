@@ -12,7 +12,7 @@ const CourseCard = ({ course }) => {
     return (
         <CardGroup style={{ width: '18rem' }} className='gap-4'>
             <Card >
-                <Card.Img variant="top" src={Image} />
+                <Card.Img style={{ maxHeight: "15rem" }} variant="top" src={Image} />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Button variant="primary"><Link className='text-decoration-none text-white' to={`/details/${id}`}>Go somewhere</Link></Button>

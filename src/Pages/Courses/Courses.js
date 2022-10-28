@@ -23,12 +23,15 @@ const Courses = () => {
                         }
                     </Col>
                     <Col lg="9">
-                        {
-                            courses.map(course => <CourseCard
-                                key={course.id}
-                                course={course}
-                            ></CourseCard>)
-                        }
+                        <Row>
+                            {
+                                courses.map(course => <Col className='mb-3' key={course.id}>
+                                    <CourseCard
+                                        course={course}
+                                    ></CourseCard>
+                                </Col>)
+                            }
+                        </Row>
                     </Col>
                 </Row>
             </Container>

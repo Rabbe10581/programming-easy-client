@@ -11,7 +11,7 @@ const CheckOut = () => {
     console.log(checkout);
 
     const handleEnroll = () => {
-        toast('Ans is Correct', {
+        toast.success('Thanks for Enrolling', {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
