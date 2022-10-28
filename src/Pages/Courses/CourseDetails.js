@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const CourseDetails = () => {
 
     const data = useLoaderData();
-    console.log(data);
+    // console.log(data);
     const { name, Image, details, ques } = data;
 
     return (
@@ -18,7 +18,11 @@ const CourseDetails = () => {
                     {details}
                 </Card.Text>
                 <div className='d-flex justify-content-evenly'>
-                    <Button variant="primary">Get premium access</Button>
+                    <Button variant="primary">
+                        <Link className='text-decoration-none text-white' to="/checkout">
+                            Get premium access
+                        </Link>
+                    </Button>
                     <Button variant="primary">Download PDF Now</Button>
                 </div>
             </Card.Body>

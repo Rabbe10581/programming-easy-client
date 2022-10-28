@@ -7,8 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { GoogleAuthProvider } from 'firebase/auth';
+import Card from 'react-bootstrap/Card';
+import { useState } from 'react';
 
 const Login = () => {
+    const [error, setError] = useState('');
 
     const { signIn, googleProviderLogin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider()
@@ -17,7 +20,7 @@ const Login = () => {
         googleProviderLogin(googleProvider)
             .then(res => {
                 const user = res.user;
-                // console.log(user);
+                console.log(user);
             })
             .catch(error => console.error(error))
     }
@@ -35,39 +38,42 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('');
                 navigate('/courses')
             })
-            .catch(e => console.error(e))
+            .catch(e => {
+                console.error(e)
+                setError(e.message);
+            })
 
     }
 
 
     return (
-        <Form onSubmit={handleSubmit} className='w-50 mx-auto'>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control name='email' type="email" placeholder="Enter email" required />
-            </Form.Group>
+        <Card className='w-50 mx-auto mt-lg-5 p-4 bg-info'>
+            <Form onSubmit={handleSubmit} className='w-100'>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control name='email' type="email" placeholder="name@example.com" required />
+                </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control name='password' type="password" placeholder="Password" required />
-            </Form.Group>
-            {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group> */}
-            <Form.Text className="text-danger">
-
-            </Form.Text>
-            <Button variant="primary" type="submit">
-                Login
-            </Button>
-            <br />
-            <ButtonGroup vertical>
-                <Button onClick={handleGoogleSignIn} className='mb-2' variant='outline-primary'><FaGoogle />Login with Google</Button>
-                <Button variant='outline-dark'><FaGithub />Login with Github</Button>
-            </ButtonGroup>
-        </Form>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control name='password' type="password" placeholder="Password" required />
+                </Form.Group>
+                <Form.Text className="text-danger">
+                    {error}
+                </Form.Text>
+                <Button className='w-100' variant="success" type="submit">
+                    Login
+                </Button>
+                <br />
+                <ButtonGroup className='mt-4 w-100' vertical>
+                    <Button onClick={handleGoogleSignIn} className='mb-2' variant='outline-primary'><FaGoogle />Login with Google</Button>
+                    <Button variant='outline-dark'><FaGithub />Login with Github</Button>
+                </ButtonGroup>
+            </Form>
+        </Card>
     );
 };
 
