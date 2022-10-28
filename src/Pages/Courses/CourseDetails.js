@@ -19,7 +19,7 @@ const CourseDetails = () => {
                 </Card.Text>
                 <div className='d-flex justify-content-evenly'>
                     <Button variant="primary">
-                        <Link className='text-decoration-none text-white' to="/checkout">
+                        <Link className='text-decoration-none text-white' to={`/checkout/${data.id}`}>
                             Get premium access
                         </Link>
                     </Button>
@@ -27,7 +27,7 @@ const CourseDetails = () => {
                 </div>
             </Card.Body>
 
-        </Card>
+        </Card >
     );
 };
 
