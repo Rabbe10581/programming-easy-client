@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { GoogleAuthProvider } from 'firebase/auth';
@@ -12,21 +12,12 @@ import { useState } from 'react';
 
 const Login = () => {
     const [error, setError] = useState('');
-
     const { signIn, googleProviderLogin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider()
-
-    const handleGoogleSignIn = () => {
-        googleProviderLogin(googleProvider)
-            .then(res => {
-                const user = res.user;
-                console.log(user);
-            })
-            .catch(error => console.error(error))
-    }
-
-
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -39,13 +30,22 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 setError('');
-                navigate('/courses')
+                navigate(from, { replace: true });
             })
             .catch(e => {
                 console.error(e)
                 setError(e.message);
             })
 
+    }
+
+    const handleGoogleSignIn = () => {
+        googleProviderLogin(googleProvider)
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
     }
 
 
