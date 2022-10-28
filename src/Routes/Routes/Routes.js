@@ -21,12 +21,12 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/courses',
-                loader: () => fetch(`http://localhost:5000/details`),
+                loader: () => fetch(`https://happy-programming-server.vercel.app/details`),
                 element: <Courses></Courses>,
             },
             {
                 path: '/details/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`),
+                loader: ({ params }) => fetch(`https://happy-programming-server.vercel.app/details/${params.id}`),
                 element: <CourseDetails></CourseDetails>
             },
             {
@@ -39,7 +39,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/checkout/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`),
+                loader: ({ params }) => fetch(`https://happy-programming-server.vercel.app/details/${params.id}`),
                 element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>
             },
             {
