@@ -9,7 +9,7 @@ const Courses = () => {
     return (
         <div>
             <Container>
-                <Row>
+                <Row className='justify-content-center'>
                     <Col lg="3">
                         {
                             courses.map(course => <p
@@ -23,7 +23,7 @@ const Courses = () => {
                         }
                     </Col>
                     <Col lg="9">
-                        <Row>
+                        <Row className='justify-content-center'>
                             {
                                 courses.map(course => <Col className='mb-3' key={course.id}>
                                     <CourseCard

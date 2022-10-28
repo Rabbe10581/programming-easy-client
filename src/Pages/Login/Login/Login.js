@@ -6,15 +6,16 @@ import Form from 'react-bootstrap/Form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import Card from 'react-bootstrap/Card';
 import { useState } from 'react';
 
 const Login = () => {
     // const [user, setUser] = useState({})
     const [error, setError] = useState('');
-    const { signIn, googleProviderLogin } = useContext(AuthContext);
+    const { signIn, googleProviderLogin, githubproviderlogin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider()
+    const githubProvider = new GithubAuthProvider();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -49,6 +50,15 @@ const Login = () => {
             })
             .catch(error => console.error(error))
     }
+    const handleGithub = () => {
+        githubproviderlogin(githubProvider)
+            .then(res => {
+                const user = res.user;
+                // setUser(user);
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
 
 
     return (
@@ -72,7 +82,7 @@ const Login = () => {
                 <br />
                 <ButtonGroup className='mt-4 w-100' vertical>
                     <Button onClick={handleGoogleSignIn} className='mb-2' variant='outline-primary'><FaGoogle />Login with Google</Button>
-                    <Button variant='outline-dark'><FaGithub />Login with Github</Button>
+                    <Button onClick={handleGithub} variant='outline-dark'><FaGithub />Login with Github</Button>
                 </ButtonGroup>
             </Form>
         </Card>

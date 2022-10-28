@@ -15,7 +15,7 @@ const CourseCard = ({ course }) => {
                 <Card.Img style={{ maxHeight: "15rem" }} variant="top" src={Image} />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
-                    <Button variant="primary"><Link className='text-decoration-none text-white' to={`/details/${id}`}>Go somewhere</Link></Button>
+                    <Button variant="primary"><Link className='text-decoration-none text-white' to={`/details/${id}`}>Show details</Link></Button>
                 </Card.Body>
             </Card>
         </CardGroup>
